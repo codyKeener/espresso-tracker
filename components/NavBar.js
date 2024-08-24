@@ -17,9 +17,21 @@ export default function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }} className="me-auto">
             {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-            <div>
+            <div style={{
+              display: 'flex',
+            }}
+            >
               <Link passHref href="/">
                 <Nav.Link>Home</Nav.Link>
+              </Link>
+              <Link passHref href="/shots/edit/new">
+                <Nav.Link>New Shot</Nav.Link>
+              </Link>
+              <Link passHref href="/past-shots">
+                <Nav.Link>Past Shots</Nav.Link>
+              </Link>
+              <Link passHref href="/profile">
+                <Nav.Link>Profile</Nav.Link>
               </Link>
             </div>
             <div>
