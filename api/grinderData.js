@@ -57,7 +57,7 @@ const createGrinder = (payload) => new Promise((resolve, reject) => {
 
 // UPDATE GRINDER
 const updateGrinder = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/grinders.json/${payload.id}`, {
+  fetch(`${endpoint}/grinders/${payload.id}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

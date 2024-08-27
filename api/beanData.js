@@ -57,7 +57,7 @@ const createBean = (payload) => new Promise((resolve, reject) => {
 
 // UPDATE BEAN
 const updateBean = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/beans.json/${payload.id}`, {
+  fetch(`${endpoint}/beans/${payload.id}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

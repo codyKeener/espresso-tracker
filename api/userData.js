@@ -44,7 +44,7 @@ const createUser = (payload) => new Promise((resolve, reject) => {
 
 // UPDATE USER
 const updateUser = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/users.json/${payload.id}`, {
+  fetch(`${endpoint}/users/${payload.id}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

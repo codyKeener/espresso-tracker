@@ -57,7 +57,7 @@ const createShot = (payload) => new Promise((resolve, reject) => {
 
 // UPDATE SHOT
 const updateShot = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/shots.json/${payload.id}`, {
+  fetch(`${endpoint}/shots/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
