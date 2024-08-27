@@ -57,7 +57,7 @@ const createMachine = (payload) => new Promise((resolve, reject) => {
 
 // UPDATE MACHINE
 const updateMachine = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/machines.json/${payload.id}`, {
+  fetch(`${endpoint}/machines/${payload.id}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
