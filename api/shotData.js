@@ -71,7 +71,7 @@ const updateShot = (payload) => new Promise((resolve, reject) => {
 
 // DELETE SHOT
 const deleteShot = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/shots/${firebaseKey}`, {
+  fetch(`${endpoint}/shots/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
