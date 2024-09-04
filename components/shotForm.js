@@ -65,6 +65,7 @@ export default function ShotForm({ obj }) {
     const payload = {
       ...formInput,
       uid: user.uid,
+      brewed_at: Date.now(),
     };
 
     if (obj.firebaseKey) {
@@ -92,7 +93,7 @@ export default function ShotForm({ obj }) {
               type="text"
               placeholder="Choose your beans"
               name="beans"
-              value={obj.beans.firebaseKey}
+              value={obj.beans}
               onChange={handleChange}
               required
             >
@@ -123,7 +124,7 @@ export default function ShotForm({ obj }) {
             <Form.Select
               placeholder="Espresso Machine"
               name="machine"
-              value={obj.machine.firebaseKey}
+              value={obj.machine}
               onChange={handleChange}
               required
             >
@@ -144,7 +145,7 @@ export default function ShotForm({ obj }) {
             <Form.Select
               placeholder="Grinder"
               name="grinder"
-              value={obj.grinder.firebaseKey}
+              value={obj.grinder}
               onChange={handleChange}
               required
             >
@@ -257,6 +258,7 @@ export default function ShotForm({ obj }) {
 
 ShotForm.propTypes = {
   obj: PropTypes.shape({
+    brewed_at: PropTypes.number,
     beans: PropTypes.string,
     bean_roast_date: PropTypes.string,
     machine: PropTypes.string,
