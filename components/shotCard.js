@@ -30,7 +30,7 @@ export default function ShotCard({ shotObj, onUpdate }) {
     <Card style={{ width: '300px' }}>
       <Card.Img variant="top" src={shotObj.image} style={{ height: '280px' }} />
       <Card.Body>
-        <Card.Title>{shotDate.toDateString()} at {(Number(shotDate.getHours()) < 12) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{shotDate.getMinutes()} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</Card.Title>
+        <Card.Title>{shotDate.toDateString()} at {(Number(shotDate.getHours()) < 13) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{shotDate.getMinutes()} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</Card.Title>
         <Card.Text>
           <p style={{ marginBottom: '0' }}>Beans: {shotBeans.name}</p>
           <p>Rating: {shotObj.rating}</p>

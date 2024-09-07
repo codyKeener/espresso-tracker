@@ -57,7 +57,7 @@ const createBean = (payload) => new Promise((resolve, reject) => {
 
 // UPDATE BEAN
 const updateBean = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/beans/${payload.id}.json`, {
+  fetch(`${endpoint}/beans/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
