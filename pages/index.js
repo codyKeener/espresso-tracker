@@ -44,7 +44,7 @@ function Home() {
         }}
         >
           <h3>Want to check out your last shot?</h3>
-          <Link passHref href="/profile">
+          <Link passHref href="/past-shots">
             <Button className="home-button">Past Shots</Button>
           </Link>
         </div>

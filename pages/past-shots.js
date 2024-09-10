@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getShots } from '../api/shotData';
+import { getShotsForSingleUser } from '../api/shotData';
 import ShotCard from '../components/shotCard';
+import { useAuth } from '../utils/context/authContext';
 
 export default function PastShots() {
   const [shots, setShots] = useState([]);
+  const { user } = useAuth();
 
   const getAllTheShots = () => {
-    getShots().then(setShots);
+    getShotsForSingleUser(user.uid).then(setShots);
   };
 
   useEffect(() => {
     getAllTheShots();
   }, []);
-
-  console.warn(shots);
 
   return (
     <>
