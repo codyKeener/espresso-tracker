@@ -21,3 +21,35 @@ a {
 body {
   background-color: #9C8373;
 }
+
+.home-button, .sign-in-btn {
+  width: 120px;
+  height: 40px;
+  background-color: #50671F;
+  border: none;
+  margin-top: 10px;
+}
+
+.home-button:hover, .sign-in-btn:hover {
+  background-color: #374715;
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.nav-link:hover {
+  color: #acacac;
+}
+
+.nav-brand {
+  color: #ffffff;
+  font-size: 22px;
+  margin-right: 12px;
+  margin-bottom: 3px;
+}
+
+.nav-brand:hover {
+  color: #acacac;
+  transition: .3s;
+}

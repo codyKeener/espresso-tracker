@@ -11,7 +11,7 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: '#50671F' }}>
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>Espresso Tracker</Navbar.Brand>
+          <Navbar.Brand className="nav-brand">Espresso Tracker</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -22,16 +22,16 @@ export default function NavBar() {
             }}
             >
               <Link passHref href="/">
-                <Nav.Link>Home</Nav.Link>
+                <Nav.Link className="nav-link">Home</Nav.Link>
               </Link>
               <Link passHref href="/shots/edit/new">
-                <Nav.Link>New Shot</Nav.Link>
+                <Nav.Link className="nav-link">New Shot</Nav.Link>
               </Link>
               <Link passHref href="/past-shots">
-                <Nav.Link>Past Shots</Nav.Link>
+                <Nav.Link className="nav-link">Past Shots</Nav.Link>
               </Link>
               <Link passHref href="/profile">
-                <Nav.Link>Profile</Nav.Link>
+                <Nav.Link className="nav-link">Profile</Nav.Link>
               </Link>
             </div>
             <div>

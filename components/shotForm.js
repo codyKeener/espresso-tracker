@@ -106,6 +106,10 @@ export default function ShotForm({ obj }) {
     }
   };
 
+  // GET TODAY'S DATE TO LIMIT THE ROAST DATE CALENDAR
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
   return (
     <>
       <div style={{ display: 'flex', width: '100%' }}>
@@ -155,7 +159,8 @@ export default function ShotForm({ obj }) {
             </Accordion>
             <FloatingLabel controlId="floatingInput1" label="Bean roast date" style={{ marginBottom: '5px', marginTop: '5px' }}>
               <Form.Control
-                type="text"
+                type="date"
+                max={today}
                 placeholder="Roast Date"
                 name="bean_roast_date"
                 value={formInput.bean_roast_date}
@@ -207,7 +212,7 @@ export default function ShotForm({ obj }) {
                 }
               </Form.Select>
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput2" label="Pressure" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput2" label="Pressure (Bar)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -218,7 +223,7 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput3" label="Temperature" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput3" label="Temperature (&deg;F)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -229,7 +234,7 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput4" label="Dose" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput4" label="Dose (g)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -241,17 +246,17 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput5" label="Prep" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput5" label="Prep Notes" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="textarea"
-                placeholder="Puck prep"
+                placeholder="Prep Notes"
                 name="prep"
                 value={formInput.prep}
                 onChange={handleChange}
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput6" label="Shot time" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput6" label="Shot time (seconds)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -262,7 +267,7 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput7" label="Yield" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput7" label="Yield (g)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -274,9 +279,11 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput8" label="Rating" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput8" label="Rating (out of 10)" style={{ marginBottom: '5px' }}>
               <Form.Control
-                type="text"
+                type="number"
+                step=".1"
+                max="10"
                 placeholder="Rating"
                 name="rating"
                 value={formInput.rating}
@@ -320,7 +327,7 @@ ShotForm.propTypes = {
     prep: PropTypes.string,
     shot_time: PropTypes.string,
     yield: PropTypes.number,
-    rating: PropTypes.string,
+    rating: PropTypes.number,
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
