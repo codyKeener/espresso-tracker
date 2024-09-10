@@ -5,17 +5,22 @@ import { signIn } from '../utils/auth';
 function Signin() {
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
       style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
+        backgroundImage: "url('/latte-background.png')",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '1344px 652px',
+        backgroundPosition: 'top center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        minHeight: '652px',
+        minWidth: '1344px',
+        padding: '0',
+        margin: '0',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
+      <h1 style={{ marginTop: '140px' }}>Espresso Tracker</h1>
+      <Button className="sign-in-btn" onClick={signIn}>
         Sign In
       </Button>
     </div>

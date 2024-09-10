@@ -124,7 +124,7 @@ export default function BeanForm({ obj, onUpdate }) {
               required
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput7" label="Price" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="floatingInput7" label="Price ($)" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="number"
               min="0"
