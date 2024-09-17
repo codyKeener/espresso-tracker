@@ -27,7 +27,7 @@ export default function ShotCard({ shotObj, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '300px' }}>
+    <Card style={{ width: '300px', backgroundColor: '#FFFFFE' }}>
       <Card.Img variant="top" src={shotObj.image} style={{ height: '280px' }} />
       <Card.Body>
         <Card.Title>{shotDate.toDateString()} at {(Number(shotDate.getHours()) < 13) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{shotDate.getMinutes()} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</Card.Title>
@@ -37,12 +37,12 @@ export default function ShotCard({ shotObj, onUpdate }) {
         </Card.Text>
         <ButtonGroup style={{ width: '100%', display: 'flex', alignItems: 'bottom' }}>
           <Link href={`/shots/${shotObj.firebaseKey}`} passHref>
-            <Button>View</Button>
+            <Button className="card-button">View</Button>
           </Link>
           <Link href={`/shots/edit/${shotObj.firebaseKey}`} passHref>
-            <Button>Edit</Button>
+            <Button className="card-button">Edit</Button>
           </Link>
-          <Button onClick={deleteThisShot}>Delete</Button>
+          <Button className="card-delete-button" onClick={deleteThisShot}>Delete</Button>
         </ButtonGroup>
       </Card.Body>
     </Card>

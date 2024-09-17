@@ -4,25 +4,29 @@ import { signIn } from '../utils/auth';
 
 function Signin() {
   return (
-    <div
-      style={{
-        backgroundImage: "url('/latte-background.png')",
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '1344px 652px',
-        backgroundPosition: 'top center',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        minHeight: '652px',
-        minWidth: '1344px',
-        padding: '0',
-        margin: '0',
-      }}
-    >
-      <h1 style={{ marginTop: '140px' }}>Espresso Tracker</h1>
-      <Button className="sign-in-btn" onClick={signIn}>
-        Sign In
-      </Button>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          backgroundImage: "url('/moody-cafe-cropped.png')",
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'top center',
+          backgroundSize: '402px 536px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          height: '536px',
+          width: '402px',
+          padding: '0',
+          margin: '30px 0',
+          border: '2px solid black',
+          borderRadius: '12px',
+        }}
+      >
+        <h1 style={{ marginTop: '105px', color: '#FFFFEA' }}>Espresso Tracker</h1>
+        <Button className="sign-in-btn" onClick={signIn}>
+          Sign In
+        </Button>
+      </div>
     </div>
   );
 }

@@ -9,16 +9,16 @@ function Home() {
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
       style={{
-        color: '#ffffff',
+        color: '#FFFFEA',
         padding: '30px',
         margin: '20px',
         alignItems: 'center',
         width: '100%',
       }}
     >
-      <h1>Hey, {user.displayName}! Welcome to Espresso Tracker.</h1>
+      <h2>Hey, {user.displayName}! Welcome to Espresso Tracker.</h2>
       <div style={{
-        border: '2px solid white', borderRadius: '5px', marginTop: '100px', width: '60%', display: 'flex', flexDirection: 'column', alignItems: 'center',
+        border: '2px solid #FFFFEA', borderRadius: '5px', marginTop: '100px', width: '60%', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#292f25',
       }}
       >
         <div style={{

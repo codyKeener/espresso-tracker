@@ -8,7 +8,7 @@ import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
-    <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: '#50671F' }}>
+    <Navbar collapseOnSelect expand="lg" className="navbar">
       <Container>
         <Link passHref href="/">
           <Navbar.Brand className="nav-brand">Espresso Tracker</Navbar.Brand>
