@@ -79,7 +79,7 @@ export default function ViewShot() {
         <p>Machine: {shotMachine.brand} {shotMachine.name}</p>
         <p>Grinder: {shotGrinder.brand} {shotGrinder.name}</p>
         <p>Pressure: {shotDetails.pressure} Bar</p>
-        <p>Temperature: {shotDetails.temperature}&deg; Farenheight</p>
+        <p>Temperature: {shotDetails.temperature}&deg; Fahrenheit</p>
         <p>Prep notes: {shotDetails.prep}</p>
         <p>Dose: {shotDetails.dose}</p>
         <p>Yield: {shotDetails.yield}</p>

@@ -3,36 +3,29 @@ import {
   Accordion, Button, FloatingLabel, Form,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { getBeans } from '../api/beanData';
 import { getMachines } from '../api/machineData';
 import { getGrinders } from '../api/grinderData';
-import { createShot, updateShot } from '../api/shotData';
 import { useAuth } from '../utils/context/authContext';
 import BeanForm from './beanForm';
+import { createDefault, updateDefault } from '../api/defaultData';
 
 const initialState = {
   beans: '',
-  bean_roast_date: '',
   machine: '',
   grinder: '',
   pressure: '',
   temperature: '',
   dose: '',
   prep: '',
-  shot_time: '',
-  yield: '',
-  rating: '',
-  image: '',
 };
 
-export default function DefaultParametersForm({ obj }) {
+export default function DefaultParametersForm({ obj, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
   const [beans, setBeans] = useState([]);
   const [machines, setMachines] = useState([]);
   const [grinders, setGrinders] = useState([]);
   const [sideBar, setSideBar] = useState(null);
-  const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -67,17 +60,14 @@ export default function DefaultParametersForm({ obj }) {
     const payload = {
       ...formInput,
       uid: user.uid,
-      brewed_at: Date.now(),
     };
 
     if (obj.firebaseKey) {
-      updateShot(payload).then(() => router.push('/profile'));
+      updateDefault(payload).then(onUpdate);
     } else {
-      createShot(payload).then(({ name }) => {
+      createDefault(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateShot(patchPayload).then(() => {
-          router.push('/profile');
-        });
+        updateDefault(patchPayload).then(onUpdate);
       });
     }
   };
@@ -92,7 +82,7 @@ export default function DefaultParametersForm({ obj }) {
       setSideBar(
         <>
           <div style={{
-            minWidth: '350px', marginTop: '64px', border: '2px solid white', borderRadius: '5px',
+            minWidth: '250px', marginTop: '64px', border: '2px solid white', borderRadius: '5px',
           }}
           >
             <BeanForm onUpdate={beanFormSubmit} />
@@ -108,10 +98,10 @@ export default function DefaultParametersForm({ obj }) {
     <>
       <div style={{ display: 'flex', width: '100%' }}>
         <div style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px', width: '100%',
+          marginBottom: '20px', width: '100%',
         }}
         >
-          <h3 style={{ margin: '12px', color: '#FFFFEA' }}>Set Defaults</h3>
+          <h3 style={{ marginBottom: '12px', color: '#FFFFEA' }}>Set Defaults</h3>
           <Form onSubmit={handleSubmit} style={{ width: '60%' }}>
             <Accordion className="react-form" style={{ marginBottom: '5px' }}>
               <Accordion.Item eventKey="0" className="react-form">
@@ -124,7 +114,6 @@ export default function DefaultParametersForm({ obj }) {
                       name="beans"
                       value={formInput.beans}
                       onChange={handleChange}
-                      required
                     >
                       <option value="">Choose your beans</option>
                       {
@@ -158,7 +147,6 @@ export default function DefaultParametersForm({ obj }) {
                 name="machine"
                 value={formInput.machine}
                 onChange={handleChange}
-                required
               >
                 <option value="">Choose your Espresso Machine</option>
                 {
@@ -180,7 +168,6 @@ export default function DefaultParametersForm({ obj }) {
                 name="grinder"
                 value={formInput.grinder}
                 onChange={handleChange}
-                required
               >
                 <option value="">Choose your Grinder</option>
                 {
@@ -203,18 +190,16 @@ export default function DefaultParametersForm({ obj }) {
                 name="pressure"
                 value={formInput.pressure}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <FloatingLabel controlId="floatingInput3" label="Temperature (&deg;F)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
-                placeholder="Temperature in Farenheight"
+                placeholder="Temperature in Fahrenheit"
                 name="temperature"
                 value={formInput.temperature}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <FloatingLabel controlId="floatingInput4" label="Dose (g)" style={{ marginBottom: '5px' }}>
@@ -226,7 +211,6 @@ export default function DefaultParametersForm({ obj }) {
                 name="dose"
                 value={formInput.dose}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <FloatingLabel controlId="floatingInput5" label="Prep Notes" style={{ marginBottom: '5px' }}>
@@ -236,7 +220,6 @@ export default function DefaultParametersForm({ obj }) {
                 name="prep"
                 value={formInput.prep}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <div style={{ display: 'flex' }}>
@@ -261,7 +244,6 @@ export default function DefaultParametersForm({ obj }) {
 
 DefaultParametersForm.propTypes = {
   obj: PropTypes.shape({
-    brewed_at: PropTypes.number,
     beans: PropTypes.string,
     machine: PropTypes.string,
     grinder: PropTypes.string,
@@ -271,6 +253,7 @@ DefaultParametersForm.propTypes = {
     prep: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
+  onUpdate: PropTypes.func.isRequired,
 };
 
 DefaultParametersForm.defaultProps = {

@@ -10,6 +10,7 @@ import { getGrinders } from '../api/grinderData';
 import { createShot, updateShot } from '../api/shotData';
 import { useAuth } from '../utils/context/authContext';
 import BeanForm from './beanForm';
+import { getDefaultForSingleUser } from '../api/defaultData';
 
 const initialState = {
   beans: '',
@@ -32,8 +33,18 @@ export default function ShotForm({ obj }) {
   const [machines, setMachines] = useState([]);
   const [grinders, setGrinders] = useState([]);
   const [sideBar, setSideBar] = useState(null);
+  const [defaults, setDefaults] = useState({});
   const router = useRouter();
   const { user } = useAuth();
+
+  useEffect(() => {
+    getDefaultForSingleUser(user.uid).then((userDefaults) => {
+      if (userDefaults.length > 0) {
+        setDefaults(userDefaults[0]);
+        setFormInput(defaults);
+      }
+    });
+  }, [user, defaults]);
 
   useEffect(() => {
     if (obj.firebaseKey) {
@@ -225,7 +236,7 @@ export default function ShotForm({ obj }) {
               <Form.Control
                 type="number"
                 min="0"
-                placeholder="Temperature in Farenheight"
+                placeholder="Temperature in Fahrenheit"
                 name="temperature"
                 value={formInput.temperature}
                 onChange={handleChange}
