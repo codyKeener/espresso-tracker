@@ -65,18 +65,21 @@ export default function ViewShot() {
       <div style={{ display: 'flex', flexDirection: 'column', marginRight: '50px' }}>
         <img src={shotDetails.image} alt="A shot of espresso" style={{ width: '400px' }} />
         <Link href={`/shots/edit/${id}`} passHref>
-          <Button style={{ marginTop: '15px', marginBottom: '15px' }}>Edit Shot</Button>
+          <Button className="card-button" style={{ marginTop: '15px', marginBottom: '15px' }}>Edit Shot</Button>
         </Link>
-        <Button onClick={deleteThisShot}>Delete Shot</Button>
+        <Button className="card-delete-button" onClick={deleteThisShot}>Delete Shot</Button>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
+      <div style={{
+        display: 'flex', flexDirection: 'column', width: '70%', color: '#FFFFEA',
+      }}
+      >
         <h3>Shot pulled on {shotDate.toDateString()} at {(Number(shotDate.getHours()) < 12) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{shotDate.getMinutes()} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</h3>
         <p>Beans used: {shotBeans.brand} {shotBeans.name}</p>
         <p>Roast date: {shotDetails.bean_roast_date}</p>
         <p>Machine: {shotMachine.brand} {shotMachine.name}</p>
         <p>Grinder: {shotGrinder.brand} {shotGrinder.name}</p>
         <p>Pressure: {shotDetails.pressure} Bar</p>
-        <p>Temperature: {shotDetails.temperature}&deg; Farenheight</p>
+        <p>Temperature: {shotDetails.temperature}&deg; Fahrenheit</p>
         <p>Prep notes: {shotDetails.prep}</p>
         <p>Dose: {shotDetails.dose}</p>
         <p>Yield: {shotDetails.yield}</p>

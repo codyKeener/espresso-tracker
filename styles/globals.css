@@ -19,23 +19,50 @@ a {
 }
 
 body {
-  background-color: #9C8373;
+  background-color: #374635;
 }
 
 .home-button, .sign-in-btn {
   width: 160px;
   height: 45px;
-  background-color: #50671F;
+  background-color: #5f795b;
+  color: #FFFFEA;
   border: none;
   margin-top: 10px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
 }
 
-.home-button:hover, .sign-in-btn:hover {
+.home-button:hover, .sign-in-btn:hover, .form-submit-button:hover {
   background-color: #374715;
 }
 
+.form-submit-button, .card-button, .card-delete-button {
+  background-color: #5f795b;
+}
+
+.card-button, .card-delete-button {
+  border: 1px solid #FFFFFF;
+  color: #FFFFEE;
+}
+
+.card-delete-button:hover {
+  background-color: #b32e2e;
+  border: 1px solid #b32e2e;
+}
+
+.form-submit-button:hover, .card-button:hover {
+  background-color: #445c34;
+  border: 1px solid #FFFFFF;
+}
+
+.navbar {
+  background-color: #292f25;
+}
+
 .nav-link {
-  color: #ffffff;
+  color: #FFFFEA;
 }
 
 .nav-link:hover {
@@ -43,7 +70,7 @@ body {
 }
 
 .nav-brand {
-  color: #ffffff;
+  color: #FFFFEA;
   font-size: 22px;
   margin-right: 12px;
   margin-bottom: 3px;
@@ -52,4 +79,13 @@ body {
 .nav-brand:hover {
   color: #acacac;
   transition: .3s;
+}
+
+.react-form {
+  border-radius: 5px;
+}
+
+#floating-label {
+  background-color: #FFFFEA;
+  color: pink;
 }

@@ -3,48 +3,30 @@ import {
   Accordion, Button, FloatingLabel, Form,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { getBeans } from '../api/beanData';
 import { getMachines } from '../api/machineData';
 import { getGrinders } from '../api/grinderData';
-import { createShot, updateShot } from '../api/shotData';
 import { useAuth } from '../utils/context/authContext';
 import BeanForm from './beanForm';
-import { getDefaultForSingleUser } from '../api/defaultData';
+import { createDefault, updateDefault } from '../api/defaultData';
 
 const initialState = {
   beans: '',
-  bean_roast_date: '',
   machine: '',
   grinder: '',
   pressure: '',
   temperature: '',
   dose: '',
   prep: '',
-  shot_time: '',
-  yield: '',
-  rating: '',
-  image: '',
 };
 
-export default function ShotForm({ obj }) {
+export default function DefaultParametersForm({ obj, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
   const [beans, setBeans] = useState([]);
   const [machines, setMachines] = useState([]);
   const [grinders, setGrinders] = useState([]);
   const [sideBar, setSideBar] = useState(null);
-  const [defaults, setDefaults] = useState({});
-  const router = useRouter();
   const { user } = useAuth();
-
-  useEffect(() => {
-    getDefaultForSingleUser(user.uid).then((userDefaults) => {
-      if (userDefaults.length > 0) {
-        setDefaults(userDefaults[0]);
-        setFormInput(defaults);
-      }
-    });
-  }, [user, defaults]);
 
   useEffect(() => {
     if (obj.firebaseKey) {
@@ -78,17 +60,14 @@ export default function ShotForm({ obj }) {
     const payload = {
       ...formInput,
       uid: user.uid,
-      brewed_at: Date.now(),
     };
 
     if (obj.firebaseKey) {
-      updateShot(payload).then(() => router.push('/past-shots'));
+      updateDefault(payload).then(onUpdate);
     } else {
-      createShot(payload).then(({ name }) => {
+      createDefault(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateShot(patchPayload).then(() => {
-          router.push('/past-shots');
-        });
+        updateDefault(patchPayload).then(onUpdate);
       });
     }
   };
@@ -103,7 +82,7 @@ export default function ShotForm({ obj }) {
       setSideBar(
         <>
           <div style={{
-            minWidth: '350px', marginTop: '64px', border: '2px solid white', borderRadius: '5px',
+            minWidth: '250px', marginTop: '64px', border: '2px solid white', borderRadius: '5px',
           }}
           >
             <BeanForm onUpdate={beanFormSubmit} />
@@ -115,20 +94,16 @@ export default function ShotForm({ obj }) {
     }
   };
 
-  // GET TODAY'S DATE TO LIMIT THE ROAST DATE CALENDAR
-  const now = new Date();
-  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-
   return (
     <>
       <div style={{ display: 'flex', width: '100%' }}>
         <div style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px', width: '100%',
+          marginBottom: '20px', width: '100%',
         }}
         >
-          <h1 style={{ margin: '12px', color: '#FFFFEA' }}>What&apos;s Brewing?</h1>
+          <h3 style={{ marginBottom: '12px', color: '#FFFFEA' }}>Set Defaults</h3>
           <Form onSubmit={handleSubmit} style={{ width: '60%' }}>
-            <Accordion className="react-form">
+            <Accordion className="react-form" style={{ marginBottom: '5px' }}>
               <Accordion.Item eventKey="0" className="react-form">
                 <Accordion.Header className="react-form">Beans</Accordion.Header>
                 <Accordion.Body className="react-form">
@@ -139,7 +114,6 @@ export default function ShotForm({ obj }) {
                       name="beans"
                       value={formInput.beans}
                       onChange={handleChange}
-                      required
                     >
                       <option value="">Choose your beans</option>
                       {
@@ -166,17 +140,6 @@ export default function ShotForm({ obj }) {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-            <FloatingLabel className="react-form" controlId="floatingInput1" label="Bean roast date" style={{ marginBottom: '5px', marginTop: '5px' }}>
-              <Form.Control
-                type="date"
-                max={today}
-                placeholder="Roast Date"
-                name="bean_roast_date"
-                value={formInput.bean_roast_date}
-                onChange={handleChange}
-                required
-              />
-            </FloatingLabel>
             <FloatingLabel controlId="floatingSelect2" label="Machine" style={{ marginBottom: '5px' }}>
               <Form.Select
                 type="text"
@@ -184,7 +147,6 @@ export default function ShotForm({ obj }) {
                 name="machine"
                 value={formInput.machine}
                 onChange={handleChange}
-                required
               >
                 <option value="">Choose your Espresso Machine</option>
                 {
@@ -206,7 +168,6 @@ export default function ShotForm({ obj }) {
                 name="grinder"
                 value={formInput.grinder}
                 onChange={handleChange}
-                required
               >
                 <option value="">Choose your Grinder</option>
                 {
@@ -229,7 +190,6 @@ export default function ShotForm({ obj }) {
                 name="pressure"
                 value={formInput.pressure}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <FloatingLabel controlId="floatingInput3" label="Temperature (&deg;F)" style={{ marginBottom: '5px' }}>
@@ -240,7 +200,6 @@ export default function ShotForm({ obj }) {
                 name="temperature"
                 value={formInput.temperature}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <FloatingLabel controlId="floatingInput4" label="Dose (g)" style={{ marginBottom: '5px' }}>
@@ -252,7 +211,6 @@ export default function ShotForm({ obj }) {
                 name="dose"
                 value={formInput.dose}
                 onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <FloatingLabel controlId="floatingInput5" label="Prep Notes" style={{ marginBottom: '5px' }}>
@@ -262,52 +220,6 @@ export default function ShotForm({ obj }) {
                 name="prep"
                 value={formInput.prep}
                 onChange={handleChange}
-                required
-              />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingInput6" label="Shot time (seconds)" style={{ marginBottom: '5px' }}>
-              <Form.Control
-                type="number"
-                min="0"
-                placeholder="Shot time in seconds"
-                name="shot_time"
-                value={formInput.shot_time}
-                onChange={handleChange}
-                required
-              />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingInput7" label="Yield (g)" style={{ marginBottom: '5px' }}>
-              <Form.Control
-                type="number"
-                min="0"
-                step="0.1"
-                placeholder="Yield in grams"
-                name="yield"
-                value={formInput.yield}
-                onChange={handleChange}
-                required
-              />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingInput8" label="Rating (out of 10)" style={{ marginBottom: '5px' }}>
-              <Form.Control
-                type="number"
-                step=".1"
-                max="10"
-                placeholder="Rating"
-                name="rating"
-                value={formInput.rating}
-                onChange={handleChange}
-                required
-              />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingInput9" label="Image" style={{ marginBottom: '5px' }}>
-              <Form.Control
-                type="url"
-                placeholder="Image"
-                name="image"
-                value={formInput.image}
-                onChange={handleChange}
-                required
               />
             </FloatingLabel>
             <div style={{ display: 'flex' }}>
@@ -317,7 +229,7 @@ export default function ShotForm({ obj }) {
                 style={{
                   marginLeft: 'auto', fontSize: '20px', border: 'none', color: '#FFFFEA',
                 }}
-              >{obj.firebaseKey ? 'Update' : 'Create'} Shot
+              >{obj.firebaseKey ? 'Update' : 'Set'} Defaults
               </Button>
             </div>
           </Form>
@@ -330,25 +242,20 @@ export default function ShotForm({ obj }) {
   );
 }
 
-ShotForm.propTypes = {
+DefaultParametersForm.propTypes = {
   obj: PropTypes.shape({
-    brewed_at: PropTypes.number,
     beans: PropTypes.string,
-    bean_roast_date: PropTypes.string,
     machine: PropTypes.string,
     grinder: PropTypes.string,
     pressure: PropTypes.number,
     temperature: PropTypes.number,
     dose: PropTypes.number,
     prep: PropTypes.string,
-    shot_time: PropTypes.string,
-    yield: PropTypes.number,
-    rating: PropTypes.number,
-    image: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
+  onUpdate: PropTypes.func.isRequired,
 };
 
-ShotForm.defaultProps = {
+DefaultParametersForm.defaultProps = {
   obj: initialState,
 };

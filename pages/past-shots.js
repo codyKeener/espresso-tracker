@@ -19,7 +19,7 @@ export default function PastShots() {
   return (
     <>
       <div style={{
-        display: 'flex', gap: '15px', margin: '20px', flexWrap: 'wrap',
+        display: 'flex', gap: '15px', margin: '20px', flexWrap: 'wrap', justifyContent: 'center',
       }}
       >
         {(shots.length > 0) ? shots.map((shot) => (
