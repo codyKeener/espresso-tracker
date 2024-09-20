@@ -27,8 +27,8 @@ export default function NavBar() {
               <Link passHref href="/shots/edit/new">
                 <Nav.Link className="nav-link">New Shot</Nav.Link>
               </Link>
-              <Link passHref href="/past-shots">
-                <Nav.Link className="nav-link">Past Shots</Nav.Link>
+              <Link passHref href="/my-shots">
+                <Nav.Link className="nav-link">My Shots</Nav.Link>
               </Link>
               <Link passHref href="/profile">
                 <Nav.Link className="nav-link">Profile</Nav.Link>

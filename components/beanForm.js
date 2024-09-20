@@ -45,7 +45,7 @@ export default function BeanForm({ obj, onUpdate }) {
     };
 
     if (obj.firebaseKey) {
-      updateBean(payload).then(() => router.push('/past-shots'));
+      updateBean(payload).then(() => router.push('/my-shots'));
     } else {
       createBean(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
@@ -60,9 +60,9 @@ export default function BeanForm({ obj, onUpdate }) {
         display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px',
       }}
       >
-        <h2 style={{ marginTop: '10px' }}>Add New Beans</h2>
+        <h2 style={{ marginTop: '10px', color: '#E9EBE8' }}>Add New Beans</h2>
         <Form onSubmit={handleSubmit} style={{ width: '90%' }}>
-          <FloatingLabel controlId="floatingInput1" label="Brand" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="beanFloatingInput1" label="Brand" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="text"
               placeholder="Brand"
@@ -72,7 +72,7 @@ export default function BeanForm({ obj, onUpdate }) {
               required
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput2" label="Name" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="beanFloatingInput2" label="Name" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="text"
               placeholder="Name"
@@ -82,7 +82,7 @@ export default function BeanForm({ obj, onUpdate }) {
               required
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput3" label="Roast Level" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="beanFloatingInput3" label="Roast Level" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="text"
               placeholder="Roast Level"
@@ -92,7 +92,7 @@ export default function BeanForm({ obj, onUpdate }) {
               required
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput4" label="Origin" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="beanFloatingInput4" label="Origin" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="text"
               placeholder="Origin"
@@ -102,7 +102,7 @@ export default function BeanForm({ obj, onUpdate }) {
               required
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput5" label="Tasting Notes" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="beanFloatingInput5" label="Tasting Notes" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="textarea"
               placeholder="Tasting Notes"
@@ -112,7 +112,7 @@ export default function BeanForm({ obj, onUpdate }) {
               required
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput6" label="Ounces" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="beanFloatingInput6" label="Ounces" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="number"
               min="0"
@@ -124,7 +124,7 @@ export default function BeanForm({ obj, onUpdate }) {
               required
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput7" label="Price ($)" style={{ marginBottom: '5px' }}>
+          <FloatingLabel controlId="beanFloatingInput7" label="Price ($)" style={{ marginBottom: '5px' }}>
             <Form.Control
               type="number"
               min="0"
@@ -152,8 +152,8 @@ BeanForm.propTypes = {
     roast_level: PropTypes.string,
     origin: PropTypes.string,
     tasting_notes: PropTypes.string,
-    ounces: PropTypes.number,
-    price: PropTypes.number,
+    ounces: PropTypes.string,
+    price: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
   onUpdate: PropTypes.func.isRequired,

@@ -17,10 +17,11 @@ const initialState = {
   pressure: '',
   temperature: '',
   dose: '',
+  grind_size: '',
   prep: '',
 };
 
-export default function DefaultParametersForm({ obj, onUpdate }) {
+export default function DefaultParametersForm({ obj, onUpdate, onCancel }) {
   const [formInput, setFormInput] = useState(initialState);
   const [beans, setBeans] = useState([]);
   const [machines, setMachines] = useState([]);
@@ -96,18 +97,21 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
 
   return (
     <>
-      <div style={{ display: 'flex', width: '100%' }}>
+      <div style={{
+        display: 'flex', width: '100%', border: '1px solid #E9EBE8', borderRadius: '10px',
+      }}
+      >
         <div style={{
-          marginBottom: '20px', width: '100%',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px', width: '100%',
         }}
         >
-          <h3 style={{ marginBottom: '12px', color: '#FFFFEA' }}>Set Defaults</h3>
-          <Form onSubmit={handleSubmit} style={{ width: '60%' }}>
+          <h3 style={{ marginBottom: '12px', color: '#E9EBE8' }}>Set Defaults</h3>
+          <Form onSubmit={handleSubmit} style={{ width: '90%' }}>
             <Accordion className="react-form" style={{ marginBottom: '5px' }}>
               <Accordion.Item eventKey="0" className="react-form">
                 <Accordion.Header className="react-form">Beans</Accordion.Header>
                 <Accordion.Body className="react-form">
-                  <FloatingLabel controlId="floatingSelect1" label="Beans" style={{ marginBottom: '5px' }}>
+                  <FloatingLabel controlId="defaultsFloatingSelect1" label="Beans" style={{ marginBottom: '5px' }}>
                     <Form.Select
                       className="react-form"
                       placeholder="Choose your beans"
@@ -140,7 +144,7 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-            <FloatingLabel controlId="floatingSelect2" label="Machine" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="defaultsFloatingSelect2" label="Machine" style={{ marginBottom: '5px' }}>
               <Form.Select
                 type="text"
                 placeholder="Espresso Machine"
@@ -161,7 +165,7 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
                 }
               </Form.Select>
             </FloatingLabel>
-            <FloatingLabel controlId="floatingSelect3" label="Grinder" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="defaultsFloatingSelect3" label="Grinder" style={{ marginBottom: '5px' }}>
               <Form.Select
                 type="text"
                 placeholder="Grinder"
@@ -182,7 +186,7 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
                 }
               </Form.Select>
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput2" label="Pressure (Bar)" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="defaultsFloatingInput1" label="Pressure (Bar)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -192,7 +196,7 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
                 onChange={handleChange}
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput3" label="Temperature (&deg;F)" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="defaultsFloatingInput2" label="Temperature (&deg;F)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -202,7 +206,7 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
                 onChange={handleChange}
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput4" label="Dose (g)" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="defaultsFloatingInput3" label="Dose (g)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -213,7 +217,18 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
                 onChange={handleChange}
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput5" label="Prep Notes" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="defaultsFloatingInput4" label="Grind size" style={{ marginBottom: '5px' }}>
+              <Form.Control
+                type="number"
+                min="0"
+                step="0.1"
+                placeholder="Grind size"
+                name="grind_size"
+                value={formInput.grind_size}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+            <FloatingLabel controlId="defaultsFloatingInput5" label="Prep Notes" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="textarea"
                 placeholder="Prep Notes"
@@ -222,12 +237,20 @@ export default function DefaultParametersForm({ obj, onUpdate }) {
                 onChange={handleChange}
               />
             </FloatingLabel>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button
+                onClick={onCancel}
+                className="card-delete-button"
+                style={{
+                  fontSize: '20px', border: 'none', color: '#E9EBE8',
+                }}
+              >Cancel
+              </Button>
               <Button
                 className="form-submit-button"
                 type="submit"
                 style={{
-                  marginLeft: 'auto', fontSize: '20px', border: 'none', color: '#FFFFEA',
+                  fontSize: '20px', border: 'none', color: '#E9EBE8',
                 }}
               >{obj.firebaseKey ? 'Update' : 'Set'} Defaults
               </Button>
@@ -247,13 +270,15 @@ DefaultParametersForm.propTypes = {
     beans: PropTypes.string,
     machine: PropTypes.string,
     grinder: PropTypes.string,
-    pressure: PropTypes.number,
-    temperature: PropTypes.number,
-    dose: PropTypes.number,
+    pressure: PropTypes.string,
+    temperature: PropTypes.string,
+    dose: PropTypes.string,
+    grind_size: PropTypes.string,
     prep: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
   onUpdate: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 DefaultParametersForm.defaultProps = {
