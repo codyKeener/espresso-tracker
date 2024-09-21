@@ -40,9 +40,11 @@ export default function UserProfile() {
 
   const getDefaultBeansMachinesGrinders = () => {
     getDefaultForSingleUser(user.uid).then((defaults) => {
-      getSingleBean(defaults[0].beans).then(setDefaultBeans);
-      getSingleMachine(defaults[0].machine).then(setDefaultMachine);
-      getSingleGrinder(defaults[0].grinder).then(setDefaultGrinder);
+      if (defaults.length > 0) {
+        getSingleBean(defaults[0].beans).then(setDefaultBeans);
+        getSingleMachine(defaults[0].machine).then(setDefaultMachine);
+        getSingleGrinder(defaults[0].grinder).then(setDefaultGrinder);
+      }
     });
   };
 
@@ -105,8 +107,8 @@ export default function UserProfile() {
             <div style={{ color: '#E9EBE8' }}>
               <h3>Default Shot Parameters</h3>
               <p><strong>Beans:</strong> {defaultData.beans !== undefined && defaultData.beans !== '' ? `${defaultBeans.brand} ${defaultBeans.name}` : 'Default Beans not set'}</p>
-              <p><strong>Machine:</strong> {defaultMachine ? `${defaultMachine.brand} ${defaultMachine.name}` : 'Default Machine not set'}</p>
-              <p><strong>Grinder:</strong> {defaultGrinder ? `${defaultGrinder.brand} ${defaultGrinder.name}` : 'Default Grinder not set'}</p>
+              <p><strong>Machine:</strong> {defaultMachine.brand !== undefined && defaultMachine.brand !== '' ? `${defaultMachine.brand} ${defaultMachine.name}` : 'Default Machine not set'}</p>
+              <p><strong>Grinder:</strong> {defaultGrinder.brand !== undefined && defaultGrinder.brand !== '' ? `${defaultGrinder.brand} ${defaultGrinder.name}` : 'Default Grinder not set'}</p>
               <p><strong>Pressure:</strong> {defaultData.pressure !== undefined && defaultData.pressure !== '' ? `${defaultData.pressure} Bar` : 'Default Pressure not set'}</p>
               <p><strong>Temperature:</strong> {defaultData.temperature !== undefined && defaultData.temperature !== '' ? `${defaultData.temperature}° Fahrenheit` : 'Default Temperature not set'}</p>
               <p><strong>Dose:</strong> {defaultData.dose !== undefined && defaultData.dose !== '' ? defaultData.dose : 'Default Dose not set'}</p>
