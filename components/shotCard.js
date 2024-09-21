@@ -43,7 +43,7 @@ export default function ShotCard({ shotObj, onUpdate }) {
           <Link href={`/shots/edit/${shotObj.firebaseKey}`} passHref>
             <Button variant="success" className="card-button">Edit</Button>
           </Link>
-          <Button variant="success" className="card-delete-button" onClick={deleteThisShot}>Delete</Button>
+          <Button variant="danger" className="card-delete-button" onClick={deleteThisShot}>Delete</Button>
         </ButtonGroup>
       </Card.Body>
     </Card>

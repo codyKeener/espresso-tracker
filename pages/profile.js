@@ -97,7 +97,7 @@ export default function UserProfile() {
           <h2 style={{ color: '#E9EBE8', marginBottom: '10px' }}>{user.displayName}</h2>
           <img src={profileData.image || '/blank-profile-picture.png'} alt="profile" style={{ maxWidth: '300px' }} />
           {profileData.bio === undefined ? <p style={{ fontSize: '20px', color: '#E9EBE8', marginTop: '10px' }}>No bio yet</p> : <p style={{ fontSize: '20px', color: '#E9EBE8', marginTop: '10px' }}>Bio: {profileData.bio}</p>}
-          {editActive ? editText : <Button onClick={editProfile} className="card-button" style={{ width: '300px' }}>Edit Profile</Button>}
+          {editActive ? editText : <Button variant="success" onClick={editProfile} className="card-button" style={{ width: '300px' }}>Edit Profile</Button>}
         </div>
         <div style={{ minWidth: '600px' }}>
           <div style={{
@@ -115,7 +115,7 @@ export default function UserProfile() {
               <p><strong>Grind size:</strong> {defaultData.grind_size !== undefined && defaultData.grind_size !== '' ? defaultData.grind_size : 'Default Grind Size not set'}</p>
               <p><strong>Prep notes:</strong> {defaultData.prep !== undefined && defaultData.prep !== '' ? defaultData.prep : 'Default Prep Notes not set'}</p>
             </div>
-            {defaultFormActive === false ? <Button onClick={editDefaults} className="card-button">Set Defaults</Button> : ''}
+            {defaultFormActive === false ? <Button variant="success" onClick={editDefaults} className="card-button">Set Defaults</Button> : ''}
             <div>
               {defaultFormDiv}
             </div>

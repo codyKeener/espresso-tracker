@@ -74,9 +74,9 @@ export default function ViewShot() {
       <div style={{ display: 'flex', flexDirection: 'column', marginRight: '50px' }}>
         <img src={shotDetails.image} alt="A shot of espresso" style={{ width: '400px' }} />
         <Link href={`/shots/edit/${id}`} passHref>
-          <Button className="card-button" style={{ marginTop: '15px', marginBottom: '15px' }}>Edit Shot</Button>
+          <Button variant="success" className="card-button" style={{ marginTop: '15px', marginBottom: '15px' }}>Edit Shot</Button>
         </Link>
-        <Button className="card-delete-button" onClick={deleteThisShot}>Delete Shot</Button>
+        <Button variant="danger" className="card-delete-button" onClick={deleteThisShot}>Delete Shot</Button>
       </div>
       <div style={{
         display: 'flex', flexDirection: 'column', width: '70%', color: '#E9EBE8',

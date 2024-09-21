@@ -159,7 +159,7 @@ export default function ShotForm({ obj }) {
                   >
                     <p>OR</p>
                     <div>
-                      <Button className="form-submit-button" style={{ border: 'none' }} onClick={sideBarToggle}>Add New Beans</Button>
+                      <Button variant="success" className="form-submit-button" style={{ border: 'none' }} onClick={sideBarToggle}>Add New Beans</Button>
                     </div>
                   </div>
                 </Accordion.Body>
@@ -323,6 +323,7 @@ export default function ShotForm({ obj }) {
             </FloatingLabel>
             <div style={{ display: 'flex' }}>
               <Button
+                variant="success"
                 className="form-submit-button"
                 type="submit"
                 style={{
