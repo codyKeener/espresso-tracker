@@ -44,7 +44,7 @@ export default function NavBar() {
               </Link>
             </div>
             <div>
-              <Button className="card-delete-button" onClick={signOut}>Sign Out</Button>
+              <Button variant="danger" className="card-delete-button" onClick={signOut}>Sign Out</Button>
             </div>
           </Nav>
         </Navbar.Collapse>

@@ -102,7 +102,7 @@ body {
   color: #FFFFEE;
 }
 
-.clickableLink:hover {
+.clickableLink:hover, .reset-button:hover {
   cursor: pointer;
   color: #acacac;
 }

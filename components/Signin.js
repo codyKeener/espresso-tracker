@@ -25,7 +25,7 @@ function Signin() {
         }}
       >
         <h1 style={{ marginTop: '105px', color: '#E9EBE8' }}>Espresso Tracker</h1>
-        <Button className="sign-in-btn" onClick={signIn}>
+        <Button variant="success" className="sign-in-btn" onClick={signIn}>
           Sign In
         </Button>
       </div>

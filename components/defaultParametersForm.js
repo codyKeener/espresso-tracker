@@ -111,7 +111,7 @@ export default function DefaultParametersForm({ obj, onUpdate, onCancel }) {
         >
           <h3 style={{ marginTop: '12px', marginBottom: '2px', color: '#E9EBE8' }}>Set Defaults</h3>
           <div style={{ width: '90%', display: 'flex', justifyContent: 'right' }}>
-            <Button onClick={resetFields} style={{ marginLeft: 'auto', border: 'none', backgroundColor: 'transparent' }}>Reset</Button>
+            <Button className="reset-button" onClick={resetFields} style={{ marginLeft: 'auto', border: 'none', backgroundColor: 'transparent' }}>Reset</Button>
           </div>
           <Form onSubmit={handleSubmit} style={{ width: '90%' }}>
             <Accordion className="react-form" style={{ marginBottom: '5px' }}>
@@ -246,6 +246,7 @@ export default function DefaultParametersForm({ obj, onUpdate, onCancel }) {
             </FloatingLabel>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button
+                variant="danger"
                 onClick={onCancel}
                 className="card-delete-button"
                 style={{
@@ -254,6 +255,7 @@ export default function DefaultParametersForm({ obj, onUpdate, onCancel }) {
               >Cancel
               </Button>
               <Button
+                variant="success"
                 className="form-submit-button"
                 type="submit"
                 style={{
