@@ -30,19 +30,20 @@ export default function ShotCard({ shotObj, onUpdate }) {
     <Card style={{ width: '300px', backgroundColor: '#FFFFFE' }}>
       <Card.Img variant="top" src={shotObj.image} style={{ height: '280px' }} />
       <Card.Body>
-        <Card.Title>{shotDate.toDateString()} at {(Number(shotDate.getHours()) < 13) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{shotDate.getMinutes()} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</Card.Title>
-        <Card.Text>
-          <p style={{ marginBottom: '0' }}>Beans: {shotBeans.name}</p>
-          <p>Rating: {shotObj.rating}</p>
+        <Card.Title>{shotDate.toDateString()} at {(Number(shotDate.getHours()) < 13) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{String(shotDate.getMinutes()).padStart(2, '0')} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</Card.Title>
+        <Card.Text style={{ marginBottom: '0' }}><strong>Beans:</strong> {shotBeans.name}
+          {/* <p style={{ marginBottom: '0' }}>Beans: {shotBeans.name}</p>
+          <p>Rating: {shotObj.rating}</p> */}
         </Card.Text>
+        <Card.Text><strong>Rating:</strong> {shotObj.rating}</Card.Text>
         <ButtonGroup style={{ width: '100%', display: 'flex', alignItems: 'bottom' }}>
           <Link href={`/shots/${shotObj.firebaseKey}`} passHref>
-            <Button className="card-button">View</Button>
+            <Button variant="success" className="card-button">View</Button>
           </Link>
           <Link href={`/shots/edit/${shotObj.firebaseKey}`} passHref>
-            <Button className="card-button">Edit</Button>
+            <Button variant="success" className="card-button">Edit</Button>
           </Link>
-          <Button className="card-delete-button" onClick={deleteThisShot}>Delete</Button>
+          <Button variant="success" className="card-delete-button" onClick={deleteThisShot}>Delete</Button>
         </ButtonGroup>
       </Card.Body>
     </Card>
@@ -56,13 +57,13 @@ ShotCard.propTypes = {
     bean_roast_date: PropTypes.string,
     machine: PropTypes.string,
     grinder: PropTypes.string,
-    pressure: PropTypes.number,
-    temperature: PropTypes.number,
-    dose: PropTypes.number,
+    pressure: PropTypes.string,
+    temperature: PropTypes.string,
+    dose: PropTypes.string,
     prep: PropTypes.string,
-    shot_time: PropTypes.number,
-    yield: PropTypes.number,
-    rating: PropTypes.number,
+    shot_time: PropTypes.string,
+    yield: PropTypes.string,
+    rating: PropTypes.string,
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,

@@ -20,6 +20,7 @@ const initialState = {
   pressure: '',
   temperature: '',
   dose: '',
+  grind_size: '',
   prep: '',
   shot_time: '',
   yield: '',
@@ -33,18 +34,8 @@ export default function ShotForm({ obj }) {
   const [machines, setMachines] = useState([]);
   const [grinders, setGrinders] = useState([]);
   const [sideBar, setSideBar] = useState(null);
-  const [defaults, setDefaults] = useState({});
   const router = useRouter();
   const { user } = useAuth();
-
-  useEffect(() => {
-    getDefaultForSingleUser(user.uid).then((userDefaults) => {
-      if (userDefaults.length > 0) {
-        setDefaults(userDefaults[0]);
-        setFormInput(defaults);
-      }
-    });
-  }, [user, defaults]);
 
   useEffect(() => {
     if (obj.firebaseKey) {
@@ -64,6 +55,14 @@ export default function ShotForm({ obj }) {
     getGrinders().then(setGrinders);
   }, []);
 
+  useEffect(() => {
+    getDefaultForSingleUser(user.uid).then((userDefaults) => {
+      if (userDefaults.length > 0) {
+        setFormInput(userDefaults[0]);
+      }
+    });
+  }, [user]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -82,12 +81,12 @@ export default function ShotForm({ obj }) {
     };
 
     if (obj.firebaseKey) {
-      updateShot(payload).then(() => router.push('/past-shots'));
+      updateShot(payload).then(() => router.push('/my-shots'));
     } else {
       createShot(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateShot(patchPayload).then(() => {
-          router.push('/past-shots');
+          router.push('/my-shots');
         });
       });
     }
@@ -126,7 +125,7 @@ export default function ShotForm({ obj }) {
           display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px', width: '100%',
         }}
         >
-          <h1 style={{ margin: '12px', color: '#FFFFEA' }}>What&apos;s Brewing?</h1>
+          <h1 style={{ margin: '12px', color: '#E9EBE8' }}>What&apos;s Brewing?</h1>
           <Form onSubmit={handleSubmit} style={{ width: '60%' }}>
             <Accordion className="react-form">
               <Accordion.Item eventKey="0" className="react-form">
@@ -255,7 +254,19 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput5" label="Prep Notes" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput5" label="Grind size" style={{ marginBottom: '5px' }}>
+              <Form.Control
+                type="number"
+                min="0"
+                step="0.1"
+                placeholder="Grind size"
+                name="grind_size"
+                value={formInput.grind_size}
+                onChange={handleChange}
+                required
+              />
+            </FloatingLabel>
+            <FloatingLabel controlId="floatingInput6" label="Prep Notes" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="textarea"
                 placeholder="Prep Notes"
@@ -265,7 +276,7 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput6" label="Shot time (seconds)" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput7" label="Shot time (seconds)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -276,7 +287,7 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput7" label="Yield (g)" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput8" label="Yield (g)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 min="0"
@@ -288,7 +299,7 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput8" label="Rating (out of 10)" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput9" label="Rating (out of 10)" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="number"
                 step=".1"
@@ -300,7 +311,7 @@ export default function ShotForm({ obj }) {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingInput9" label="Image" style={{ marginBottom: '5px' }}>
+            <FloatingLabel controlId="floatingInput10" label="Image" style={{ marginBottom: '5px' }}>
               <Form.Control
                 type="url"
                 placeholder="Image"
@@ -315,7 +326,7 @@ export default function ShotForm({ obj }) {
                 className="form-submit-button"
                 type="submit"
                 style={{
-                  marginLeft: 'auto', fontSize: '20px', border: 'none', color: '#FFFFEA',
+                  marginLeft: 'auto', fontSize: '20px', border: 'none', color: '#E9EBE8',
                 }}
               >{obj.firebaseKey ? 'Update' : 'Create'} Shot
               </Button>
@@ -337,13 +348,14 @@ ShotForm.propTypes = {
     bean_roast_date: PropTypes.string,
     machine: PropTypes.string,
     grinder: PropTypes.string,
-    pressure: PropTypes.number,
-    temperature: PropTypes.number,
-    dose: PropTypes.number,
+    pressure: PropTypes.string,
+    temperature: PropTypes.string,
+    dose: PropTypes.string,
+    grind_size: PropTypes.string,
     prep: PropTypes.string,
     shot_time: PropTypes.string,
-    yield: PropTypes.number,
-    rating: PropTypes.number,
+    yield: PropTypes.string,
+    rating: PropTypes.string,
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),

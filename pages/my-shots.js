@@ -9,7 +9,10 @@ export default function PastShots() {
   const { user } = useAuth();
 
   const getAllTheShots = () => {
-    getShotsForSingleUser(user.uid).then(setShots);
+    getShotsForSingleUser(user.uid).then((allShots) => {
+      allShots.sort((a, b) => b.brewed_at - a.brewed_at);
+      setShots(allShots);
+    });
   };
 
   useEffect(() => {

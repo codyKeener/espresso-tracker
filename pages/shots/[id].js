@@ -21,7 +21,7 @@ export default function ViewShot() {
 
   const deleteThisShot = () => {
     if (window.confirm('Delete this shot?')) {
-      deleteShot(id).then(() => router.push('/past-shots'));
+      deleteShot(id).then(() => router.push('/my-shots'));
     }
   };
 
@@ -50,15 +50,24 @@ export default function ViewShot() {
 
   const shotDate = formatDate(shotDetails.brewed_at);
 
-  // Found this function to reduce fractions here: https://stackoverflow.com/questions/4652468/is-there-a-javascript-function-that-reduces-a-fraction
   const espressoRatio = (espressoDose, espressoYield) => {
-    let gcd = function gcd(a, b) {
-      return b ? gcd(b, a % b) : a;
-    };
-    gcd = gcd(espressoDose, espressoYield);
-    const ratioArray = [espressoDose / gcd, espressoYield / gcd];
-    return `${ratioArray[0]}:${ratioArray[1]}`;
+    let roundedYield;
+    if (espressoYield % espressoDose === 0) {
+      roundedYield = parseFloat(espressoYield / espressoDose);
+    } else {
+      roundedYield = parseFloat(espressoYield / espressoDose).toFixed(2);
+    }
+    const ratio = `1:${roundedYield}`;
+    return ratio;
   };
+
+  // const formatStringDate = (dateString) => {
+  //   const year = dateString.slice(0, 4);
+  //   const month = dateString.slice(5, 7);
+  //   const day = dateString.slice(8, 10);
+  //   const formattedDate = `${month}-${day}-${year}`;
+  //   return formattedDate;
+  // };
 
   return (
     <div style={{ display: 'flex', width: '100%', margin: '20px' }}>
@@ -70,22 +79,42 @@ export default function ViewShot() {
         <Button className="card-delete-button" onClick={deleteThisShot}>Delete Shot</Button>
       </div>
       <div style={{
-        display: 'flex', flexDirection: 'column', width: '70%', color: '#FFFFEA',
+        display: 'flex', flexDirection: 'column', width: '70%', color: '#E9EBE8',
       }}
       >
-        <h3>Shot pulled on {shotDate.toDateString()} at {(Number(shotDate.getHours()) < 12) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{shotDate.getMinutes()} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</h3>
-        <p>Beans used: {shotBeans.brand} {shotBeans.name}</p>
-        <p>Roast date: {shotDetails.bean_roast_date}</p>
-        <p>Machine: {shotMachine.brand} {shotMachine.name}</p>
-        <p>Grinder: {shotGrinder.brand} {shotGrinder.name}</p>
-        <p>Pressure: {shotDetails.pressure} Bar</p>
-        <p>Temperature: {shotDetails.temperature}&deg; Fahrenheit</p>
-        <p>Prep notes: {shotDetails.prep}</p>
-        <p>Dose: {shotDetails.dose}</p>
-        <p>Yield: {shotDetails.yield}</p>
-        <p>Ratio: {espressoRatio(shotDetails.dose, shotDetails.yield)}</p>
-        <p>Shot Time: {shotDetails.shot_time} seconds</p>
-        <p>Rating: {shotDetails.rating}</p>
+        <h3>Shot pulled on {shotDate.toDateString()} at {(Number(shotDate.getHours()) < 12) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{String(shotDate.getMinutes()).padStart(2, '0')} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</h3>
+        <div style={{
+          display: 'flex', fontSize: '18px', marginTop: '20px', gap: '10px', flexDirection: 'column',
+        }}
+        >
+          <div>
+            <h5>Shot Details</h5>
+            <ul>
+              <li><strong>Temperature:</strong> {shotDetails.temperature}&deg; Fahrenheit</li>
+              <li><strong>Prep notes:</strong> {shotDetails.prep}</li>
+              <li><strong>Dose:</strong> {shotDetails.dose}</li>
+              <li><strong>Yield:</strong> {shotDetails.yield}</li>
+              <li><strong>Ratio:</strong> {espressoRatio(shotDetails.dose, shotDetails.yield)}</li>
+              <li><strong>Shot Time:</strong> {shotDetails.shot_time} seconds</li>
+              <li><strong>Rating:</strong> {shotDetails.rating}</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Beans</h5>
+            <ul>
+              <li><strong>Beans used:</strong> {shotBeans.brand} {shotBeans.name}</li>
+              <li><strong>Roast date:</strong> {shotDetails.bean_roast_date}</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Gear</h5>
+            <ul>
+              <li><strong>Machine:</strong> {shotMachine.brand} {shotMachine.name}</li>
+              <li><strong>Grinder:</strong> {shotGrinder.brand} {shotGrinder.name}</li>
+              <li><strong>Pressure:</strong> {shotDetails.pressure} Bar</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -26,8 +26,8 @@ body {
   width: 160px;
   height: 45px;
   background-color: #5f795b;
-  color: #FFFFEA;
-  border: none;
+  color: #E9EBE8;
+  border: 1px solid #E9EBE8;
   margin-top: 10px;
   text-align: center;
   line-height: 30px;
@@ -35,7 +35,8 @@ body {
 }
 
 .home-button:hover, .sign-in-btn:hover, .form-submit-button:hover {
-  background-color: #374715;
+  background-color: #3e592d;
+  border: 1px solid #E9EBE8;
 }
 
 .form-submit-button, .card-button, .card-delete-button {
@@ -53,7 +54,7 @@ body {
 }
 
 .form-submit-button:hover, .card-button:hover {
-  background-color: #445c34;
+  background-color: #3e592d;
   border: 1px solid #FFFFFF;
 }
 
@@ -62,7 +63,7 @@ body {
 }
 
 .nav-link {
-  color: #FFFFEA;
+  color: #E9EBE8;
 }
 
 .nav-link:hover {
@@ -70,7 +71,7 @@ body {
 }
 
 .nav-brand {
-  color: #FFFFEA;
+  color: #E9EBE8;
   font-size: 22px;
   margin-right: 12px;
   margin-bottom: 3px;
@@ -85,7 +86,14 @@ body {
   border-radius: 5px;
 }
 
-#floating-label {
-  background-color: #FFFFEA;
-  color: pink;
+.home-image {
+  background-color: #292f25;
+  border-radius: 50px;
+}
+
+.home-image:hover {
+  transform: translate(-4px, -4px);
+  cursor: pointer;
+  background-color: #292f25ca;
+  border-radius: 50px;
 }
