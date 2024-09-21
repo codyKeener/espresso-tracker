@@ -74,14 +74,20 @@ export default function ShotForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const payload = {
-      ...formInput,
-      uid: user.uid,
-      brewed_at: Date.now(),
-    };
+    let payload = {};
 
     if (obj.firebaseKey) {
-      updateShot(payload).then(() => router.push('/my-shots'));
+      payload = formInput;
+    } else {
+      payload = {
+        ...formInput,
+        uid: user.uid,
+        brewed_at: Date.now(),
+      };
+    }
+
+    if (obj.firebaseKey) {
+      updateShot(payload).then(() => router.push(`/shots/${obj.firebaseKey}`));
     } else {
       createShot(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
