@@ -56,11 +56,13 @@ export default function ShotForm({ obj }) {
   }, []);
 
   useEffect(() => {
-    getDefaultForSingleUser(user.uid).then((userDefaults) => {
-      if (userDefaults.length > 0) {
-        setFormInput(userDefaults[0]);
-      }
-    });
+    if (!obj.firebaseKey) {
+      getDefaultForSingleUser(user.uid).then((userDefaults) => {
+        if (userDefaults.length > 0) {
+          setFormInput(userDefaults[0]);
+        }
+      });
+    }
   }, [user]);
 
   const handleChange = (e) => {
