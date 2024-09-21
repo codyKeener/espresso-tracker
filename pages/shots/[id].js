@@ -82,7 +82,7 @@ export default function ViewShot() {
         display: 'flex', flexDirection: 'column', width: '70%', color: '#E9EBE8',
       }}
       >
-        <h3>Shot pulled on {shotDate.toDateString()} at {(Number(shotDate.getHours()) < 12) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{String(shotDate.getMinutes()).padStart(2, '0')} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</h3>
+        <h3>Shot pulled on {shotDate.toDateString()} at {(Number(shotDate.getHours()) < 13) ? shotDate.getHours() : (Number(shotDate.getHours()) - 12)}:{String(shotDate.getMinutes()).padStart(2, '0')} {(Number(shotDate.getHours()) < 12) ? 'am' : 'pm'}</h3>
         <div style={{
           display: 'flex', fontSize: '18px', marginTop: '20px', gap: '10px', flexDirection: 'column',
         }}
