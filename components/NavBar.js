@@ -11,7 +11,16 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" className="navbar">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand className="nav-brand">Espresso Tracker</Navbar.Brand>
+          <Navbar.Brand className="nav-brand">
+            <img
+              alt="Spro Bro, the Espresso Tracker mascot"
+              src="/spro-bro.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+            Espresso Tracker
+          </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -35,7 +44,7 @@ export default function NavBar() {
               </Link>
             </div>
             <div>
-              <Button variant="danger" onClick={signOut}>Sign Out</Button>
+              <Button className="card-delete-button" onClick={signOut}>Sign Out</Button>
             </div>
           </Nav>
         </Navbar.Collapse>

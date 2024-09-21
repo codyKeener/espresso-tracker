@@ -50,15 +50,24 @@ export default function ViewShot() {
 
   const shotDate = formatDate(shotDetails.brewed_at);
 
-  // Found this function to reduce fractions here: https://stackoverflow.com/questions/4652468/is-there-a-javascript-function-that-reduces-a-fraction
   const espressoRatio = (espressoDose, espressoYield) => {
-    let gcd = function gcd(a, b) {
-      return b ? gcd(b, a % b) : a;
-    };
-    gcd = gcd(espressoDose, espressoYield);
-    const ratioArray = [espressoDose / gcd, espressoYield / gcd];
-    return `${ratioArray[0]}:${ratioArray[1]}`;
+    let roundedYield;
+    if (espressoYield % espressoDose === 0) {
+      roundedYield = parseFloat(espressoYield / espressoDose);
+    } else {
+      roundedYield = parseFloat(espressoYield / espressoDose).toFixed(2);
+    }
+    const ratio = `1:${roundedYield}`;
+    return ratio;
   };
+
+  // const formatStringDate = (dateString) => {
+  //   const year = dateString.slice(0, 4);
+  //   const month = dateString.slice(5, 7);
+  //   const day = dateString.slice(8, 10);
+  //   const formattedDate = `${month}-${day}-${year}`;
+  //   return formattedDate;
+  // };
 
   return (
     <div style={{ display: 'flex', width: '100%', margin: '20px' }}>

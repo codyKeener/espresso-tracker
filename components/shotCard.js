@@ -38,12 +38,12 @@ export default function ShotCard({ shotObj, onUpdate }) {
         <Card.Text><strong>Rating:</strong> {shotObj.rating}</Card.Text>
         <ButtonGroup style={{ width: '100%', display: 'flex', alignItems: 'bottom' }}>
           <Link href={`/shots/${shotObj.firebaseKey}`} passHref>
-            <Button className="card-button">View</Button>
+            <Button variant="success" className="card-button">View</Button>
           </Link>
           <Link href={`/shots/edit/${shotObj.firebaseKey}`} passHref>
-            <Button className="card-button">Edit</Button>
+            <Button variant="success" className="card-button">Edit</Button>
           </Link>
-          <Button className="card-delete-button" onClick={deleteThisShot}>Delete</Button>
+          <Button variant="success" className="card-delete-button" onClick={deleteThisShot}>Delete</Button>
         </ButtonGroup>
       </Card.Body>
     </Card>

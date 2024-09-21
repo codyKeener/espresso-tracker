@@ -95,6 +95,10 @@ export default function DefaultParametersForm({ obj, onUpdate, onCancel }) {
     }
   };
 
+  const resetFields = () => {
+    setFormInput(initialState);
+  };
+
   return (
     <>
       <div style={{
@@ -105,7 +109,10 @@ export default function DefaultParametersForm({ obj, onUpdate, onCancel }) {
           display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px', width: '100%',
         }}
         >
-          <h3 style={{ marginBottom: '12px', color: '#E9EBE8' }}>Set Defaults</h3>
+          <h3 style={{ marginTop: '12px', marginBottom: '2px', color: '#E9EBE8' }}>Set Defaults</h3>
+          <div style={{ width: '90%', display: 'flex', justifyContent: 'right' }}>
+            <Button onClick={resetFields} style={{ marginLeft: 'auto', border: 'none', backgroundColor: 'transparent' }}>Reset</Button>
+          </div>
           <Form onSubmit={handleSubmit} style={{ width: '90%' }}>
             <Accordion className="react-form" style={{ marginBottom: '5px' }}>
               <Accordion.Item eventKey="0" className="react-form">

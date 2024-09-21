@@ -38,23 +38,28 @@ export default function UserProfile() {
     });
   };
 
+  const getDefaultBeansMachinesGrinders = () => {
+    getDefaultForSingleUser(user.uid).then((defaults) => {
+      getSingleBean(defaults[0].beans).then(setDefaultBeans);
+      getSingleMachine(defaults[0].machine).then(setDefaultMachine);
+      getSingleGrinder(defaults[0].grinder).then(setDefaultGrinder);
+    });
+  };
+
+  useEffect(() => {
+    getDefaultBeansMachinesGrinders();
+  }, []);
+
   const getTheDefaultsAgain = () => {
     getDefaultForSingleUser(user.uid).then((defaults) => {
       if (defaults.length > 0) {
         setDefaultData(defaults[0]);
       }
     });
+    getDefaultBeansMachinesGrinders();
     setDefaultFormActive(false);
     setDefaultFormDiv('');
   };
-
-  useEffect(() => {
-    getDefaultForSingleUser(user.uid).then((defaults) => {
-      getSingleBean(defaults[0].beans).then(setDefaultBeans);
-      getSingleMachine(defaults[0].machine).then(setDefaultMachine);
-      getSingleGrinder(defaults[0].grinder).then(setDefaultGrinder);
-    });
-  }, []);
 
   useEffect(() => {
     getTheProfile();

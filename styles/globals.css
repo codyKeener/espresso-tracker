@@ -35,7 +35,7 @@ body {
 }
 
 .home-button:hover, .sign-in-btn:hover, .form-submit-button:hover {
-  background-color: #374715;
+  background-color: #3e592d;
   border: 1px solid #E9EBE8;
 }
 
@@ -54,7 +54,7 @@ body {
 }
 
 .form-submit-button:hover, .card-button:hover {
-  background-color: #445c34;
+  background-color: #3e592d;
   border: 1px solid #FFFFFF;
 }
 
@@ -84,4 +84,16 @@ body {
 
 .react-form {
   border-radius: 5px;
+}
+
+.home-image {
+  background-color: #292f25;
+  border-radius: 50px;
+}
+
+.home-image:hover {
+  transform: translate(-4px, -4px);
+  cursor: pointer;
+  background-color: #292f25ca;
+  border-radius: 50px;
 }

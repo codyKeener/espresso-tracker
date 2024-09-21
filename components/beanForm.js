@@ -137,7 +137,7 @@ export default function BeanForm({ obj, onUpdate }) {
             />
           </FloatingLabel>
           <div style={{ display: 'flex' }}>
-            <Button type="submit" style={{ marginLeft: 'auto', fontSize: '20px' }}>{obj.firebaseKey ? 'Update' : 'Add'} Beans</Button>
+            <Button className="form-submit-button" type="submit" style={{ marginLeft: 'auto', fontSize: '20px', border: 'none' }}>{obj.firebaseKey ? 'Update' : 'Add'} Beans</Button>
           </div>
         </Form>
       </div>
