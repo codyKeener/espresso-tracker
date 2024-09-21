@@ -97,3 +97,12 @@ body {
   background-color: #292f25ca;
   border-radius: 50px;
 }
+
+.clickableLink {
+  color: #FFFFEE;
+}
+
+.clickableLink:hover {
+  cursor: pointer;
+  color: #acacac;
+}

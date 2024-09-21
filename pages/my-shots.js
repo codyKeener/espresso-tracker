@@ -27,7 +27,7 @@ export default function PastShots() {
       >
         {(shots.length > 0) ? shots.map((shot) => (
           <ShotCard key={shot.firebaseKey} shotObj={shot} onUpdate={getAllTheShots} />
-        )) : <div style={{ display: 'flex', width: '800px', justifyContent: 'center' }}><h5 style={{ marginRight: '5px' }}>No shots match your search.</h5><Link passHref href="/post/edit/new"><h5 className="clickableLink">Create a New Shot?</h5></Link></div>}
+        )) : <div style={{ display: 'flex', width: '800px', justifyContent: 'center' }}><h5 style={{ marginRight: '5px', color: '#FFFFEE' }}>No shots match your search.</h5><Link passHref href="/shots/edit/new"><h5 className="clickableLink">Create a New Shot?</h5></Link></div>}
       </div>
     </>
   );
