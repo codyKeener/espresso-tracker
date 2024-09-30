@@ -8,12 +8,12 @@ Welcome to Espresso Tracker! Whether you are a professional barista or brand new
 [View App](#https://espresso-tracker-cody-keener.netlify.app)
 
 ## Get Started
-//function that hides the Sorting Hat card and displays the main page
-const startApp = () => {
-  sortingHatContainer.toggleAttribute("hidden")
-  mainPageContainer.toggleAttribute("hidden")
-  renderCards(studentArray, hogwartsStudents)
+//function that returns the ShotForm component
+```
+export default function newShot() {
+  return <ShotForm />;
 }
+```
 
 ## About the User
 - The ideal user for this application is anyone who makes espresso
@@ -37,6 +37,7 @@ COMING SOON
 ## Code Snippet
 <!-- //function that displays a sidebar to create a new Bean -->
 
+```
 const sideBarToggle = () => {
     if (sideBar === null) {
       setSideBar(
@@ -53,6 +54,7 @@ const sideBarToggle = () => {
       setSideBar(null);
     }
   };
+```
 
 ## Project Screenshots
 <img width="1148" alt="Screenshot of the Espresso Tracker Shot Form" src="public/espresso-tracker-shot-form.png">
@@ -65,24 +67,16 @@ const sideBarToggle = () => {
 ## Instructions I followed:
 
 ## Goals
-The goal of this project is to test your knowledge and to have a FUN time stretching yourself on your FIRST independent application that will become a part of your portfolio.
-
-Focus on MVP. Do not spend a ton of time styling initially. Hit functionality first and then spend time on the styling of the project using bootstrap.
-
-- READ THROUGH ALL OF THE INFORMATION BELOW before planning how you will tackle the project.
-- Check the Issue Tickets to organize your process. You will have all week in class to work on this in class.
-- PLEASE submit questions in help tickets if you need help. We will guide you to the resources that are available to you.
-- When done, tell an instructor. Everyone will present how far they got AND their favorite piece of code that they wrote to an instructor.
-- MOST OF ALL HAVE FUN!!!!!
+See the Front End Capstone Planning Expectations doc: https://docs.google.com/document/d/1ygmif9xV9T90wdtGoIHoqxNDfBH6bswQ9nyHjt2U34k/edit?usp=sharing
 
 ## Instructions
-See the Front End Capstone Expectations doc: https://docs.google.com/document/d/1zgPb-j0SOrwnI6G1MN9e0i58Fgfypo-loFqonlJG9ZY/edit
+See the Front End Capstone Planning Expectations doc: https://docs.google.com/document/d/1ygmif9xV9T90wdtGoIHoqxNDfBH6bswQ9nyHjt2U34k/edit?usp=sharing
 
 
 <!-- [See Demo](https://drt-sortinghat.netlify.app/)
  -->
 ## Technical Requirements
-See the Front End Capstone Expectations doc: https://docs.google.com/document/d/1zgPb-j0SOrwnI6G1MN9e0i58Fgfypo-loFqonlJG9ZY/edit
+See the Front End Capstone Planning Expectations doc: https://docs.google.com/document/d/1ygmif9xV9T90wdtGoIHoqxNDfBH6bswQ9nyHjt2U34k/edit?usp=sharing
 
 ## DEFINITION OF DONE
 Once you have completed all the technical requirments, you should complete the following:
