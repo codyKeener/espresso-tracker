@@ -34,7 +34,7 @@ COMING SOON
 ## Relevant Links
 - [Check out the deployed site](#https://espresso-trackers-cody-keener.netlify.app/#)
 
-## Code Snippet 
+## Code Snippet
 <!-- //function that displays a sidebar to create a new Bean -->
 
 const sideBarToggle = () => {
@@ -70,7 +70,7 @@ The goal of this project is to test your knowledge and to have a FUN time stretc
 Focus on MVP. Do not spend a ton of time styling initially. Hit functionality first and then spend time on the styling of the project using bootstrap.
 
 - READ THROUGH ALL OF THE INFORMATION BELOW before planning how you will tackle the project.
-- Check the Issue Tickets to organize your process. You will have all week in class to work on this in class. 
+- Check the Issue Tickets to organize your process. You will have all week in class to work on this in class.
 - PLEASE submit questions in help tickets if you need help. We will guide you to the resources that are available to you.
 - When done, tell an instructor. Everyone will present how far they got AND their favorite piece of code that they wrote to an instructor.
 - MOST OF ALL HAVE FUN!!!!!
@@ -87,4 +87,4 @@ See the Front End Capstone Expectations doc: https://docs.google.com/document/d/
 ## DEFINITION OF DONE
 Once you have completed all the technical requirments, you should complete the following:
 - [README Requirements](https://github.com/orgs/nss-evening-web-development/discussions/13)
-- **RECOMMENDED** Loom Video: [Sign up for Loom](https://www.loom.com/signup) and record a video of you walking through your app 
+- **RECOMMENDED** Loom Video: [Sign up for Loom](https://www.loom.com/signup) and record a video of you walking through your app
