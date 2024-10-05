@@ -28,7 +28,7 @@ export default function newShot() {
 - Set you default shot parameters on the Profile page
 - Create, Read, Update, and Delete shots
 
-## Video Walkthrough of Sorting Hat
+## Video Walkthrough of Espresso Tracker
 COMING SOON
 
 ## Relevant Links
