@@ -32,7 +32,7 @@ export default function newShot() {
 COMING SOON
 
 ## Relevant Links
-- [Check out the deployed site](https://espresso-trackers-cody-keener.netlify.app/)
+- [Check out the deployed site](https://espresso-tracker-cody-keener.netlify.app/)
 
 ## Code Snippet
 <!-- //function that displays a sidebar to create a new Bean -->
